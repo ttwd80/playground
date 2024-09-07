@@ -25,7 +25,7 @@ This option will also create a VM and provision an OS onto it.
    cd stack/vagrant
    vagrant up
    # This process will take about 5-10 minutes depending on your internet connection.
-   # Hook is about 400MB in size and the Ubuntu jammy image is about 500MB
+   # Hook is about 400MB in size and the Ubuntu noble image is about 500MB
    ```
 
    <details>
@@ -33,11 +33,11 @@ This option will also create a VM and provision an OS onto it.
 
    ```bash
    Bringing machine 'stack' up with 'libvirt' provider...
-   ==> stack: Checking if box 'generic/ubuntu2204' version '4.3.4' is up to date...
+   ==> stack: Checking if box 'generic/ubuntu2204' version '4.3.12' is up to date...
    ==> stack: Creating image (snapshot of base box volume).
    ==> stack: Creating domain with the following settings...
    ==> stack:  -- Name:              vagrant_stack
-   ==> stack:  -- Description:       Source: /home/tink/repos/tinkerbell/playground/vagrant/Vagrantfile
+   ==> stack:  -- Description:       Source: /home/tink/repos/tinkerbell/playground/stack/vagrant/Vagrantfile
    ==> stack:  -- Domain type:       kvm
    ==> stack:  -- Cpus:              2
    ==> stack:  -- Feature:           acpi
@@ -65,7 +65,7 @@ This option will also create a VM and provision an OS onto it.
    ==> stack:  -- Graphics Websocket: 5700
    ==> stack: Waiting for domain to get an IP address...
    ==> stack: Waiting for machine to boot. This may take a few minutes...
-       stack: SSH address: 192.168.121.127:22
+       stack: SSH address: 192.168.121.168:22
        stack: SSH username: vagrant
        stack: SSH auth method: private key
        stack: Warning: Connection refused. Retrying...
@@ -88,51 +88,60 @@ This option will also create a VM and provision an OS onto it.
        stack: Removing insecure key from the guest if it's present...
        stack: Key inserted! Disconnecting and reconnecting using new SSH key...
    ==> stack: Machine booted and ready!
-   ==> stack: Rsyncing folder: /home/tink/repos/tinkerbell/playground/vagrant/ => /playground/stack
+   ==> stack: Rsyncing folder: /home/tink/repos/tinkerbell/playground/stack/vagrant/ => /playground/stack
    ==> stack: Configuring and enabling network interfaces...
    ==> stack: Running provisioner: shell...
-       stack: Running: /tmp/vagrant-shell20231031-285946-1krhzm0.sh
-       stack: + main 192.168.56.4 192.168.56.43 08:00:27:9e:f5:3a /playground/stack/ 192.168.56.5 0.4.2 eth1 1.28.3 v5.6.0 ''
+       stack: Running: /tmp/vagrant-shell20240905-5927-9ue4gw.sh
+       stack: + main 192.168.56.4 192.168.56.43 08:00:27:9e:f5:3a /playground/stack/ 192.168.56.5 0.4.5 eth1 1.30.4 v5.7.3 v3.15.4 ''
        stack: + local host_ip=192.168.56.4
        stack: + local worker_ip=192.168.56.43
        stack: + local worker_mac=08:00:27:9e:f5:3a
        stack: + local manifests_dir=/playground/stack/
        stack: + local loadbalancer_ip=192.168.56.5
-       stack: + local helm_chart_version=0.4.2
+       stack: + local helm_chart_version=0.4.5
        stack: + local loadbalancer_interface=eth1
-       stack: + local kubectl_version=1.28.3
-       stack: + local k3d_version=v5.6.0
+       stack: + local kubectl_version=1.30.4
+       stack: + local k3d_version=v5.7.3
+       stack: + local helm_version=v3.15.4
        stack: + update_apt
        stack: + apt-get update
        stack: + DEBIAN_FRONTEND=noninteractive
        stack: + command apt-get --allow-change-held-packages --allow-downgrades --allow-remove-essential --allow-unauthenticated --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold --yes update
        stack: Hit:1 https://mirrors.edge.kernel.org/ubuntu jammy InRelease
-       stack: Get:2 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease [119 kB]
-       stack: Get:3 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease [109 kB]
-       stack: Get:4 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease [110 kB]
-       stack: Get:5 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main amd64 Packages [1,148 kB]
-       stack: Get:6 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main Translation-en [245 kB]
-       stack: Get:7 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main amd64 c-n-f Metadata [16.1 kB]
-       stack: Get:8 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted amd64 Packages [1,103 kB]
-       stack: Get:9 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted Translation-en [179 kB]
-       stack: Get:10 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [536 B]
-       stack: Get:11 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe amd64 Packages [998 kB]
-       stack: Get:12 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe Translation-en [218 kB]
-       stack: Get:13 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe amd64 c-n-f Metadata [22.0 kB]
-       stack: Get:14 https://mirrors.edge.kernel.org/ubuntu jammy-backports/main amd64 Packages [64.2 kB]
-       stack: Get:15 https://mirrors.edge.kernel.org/ubuntu jammy-backports/main amd64 c-n-f Metadata [388 B]
-       stack: Get:16 https://mirrors.edge.kernel.org/ubuntu jammy-backports/universe amd64 Packages [27.8 kB]
-       stack: Get:17 https://mirrors.edge.kernel.org/ubuntu jammy-backports/universe amd64 c-n-f Metadata [644 B]
-       stack: Get:18 https://mirrors.edge.kernel.org/ubuntu jammy-security/main amd64 Packages [938 kB]
-       stack: Get:19 https://mirrors.edge.kernel.org/ubuntu jammy-security/main Translation-en [185 kB]
-       stack: Get:20 https://mirrors.edge.kernel.org/ubuntu jammy-security/main amd64 c-n-f Metadata [11.4 kB]
-       stack: Get:21 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted amd64 Packages [1,079 kB]
-       stack: Get:22 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted Translation-en [175 kB]
-       stack: Get:23 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted amd64 c-n-f Metadata [536 B]
-       stack: Get:24 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe amd64 Packages [796 kB]
-       stack: Get:25 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe Translation-en [146 kB]
-       stack: Get:26 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe amd64 c-n-f Metadata [16.8 kB]
-       stack: Fetched 7,709 kB in 2s (4,266 kB/s)
+       stack: Get:2 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease [128 kB]
+       stack: Get:3 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease [127 kB]
+       stack: Get:4 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease [129 kB]
+       stack: Get:5 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main amd64 Packages [1,988 kB]
+       stack: Get:6 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main Translation-en [349 kB]
+       stack: Get:7 https://mirrors.edge.kernel.org/ubuntu jammy-updates/main amd64 c-n-f Metadata [17.8 kB]
+       stack: Get:8 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted amd64 Packages [2,386 kB]
+       stack: Get:9 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted Translation-en [410 kB]
+       stack: Get:10 https://mirrors.edge.kernel.org/ubuntu jammy-updates/restricted amd64 c-n-f Metadata [616 B]
+       stack: Get:11 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe amd64 Packages [1,123 kB]
+       stack: Get:12 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe Translation-en [261 kB]
+       stack: Get:13 https://mirrors.edge.kernel.org/ubuntu jammy-updates/universe amd64 c-n-f Metadata [26.1 kB]
+       stack: Get:14 https://mirrors.edge.kernel.org/ubuntu jammy-updates/multiverse amd64 Packages [43.3 kB]
+       stack: Get:15 https://mirrors.edge.kernel.org/ubuntu jammy-updates/multiverse Translation-en [10.8 kB]
+       stack: Get:16 https://mirrors.edge.kernel.org/ubuntu jammy-updates/multiverse amd64 c-n-f Metadata [444 B]
+       stack: Get:17 https://mirrors.edge.kernel.org/ubuntu jammy-backports/main amd64 Packages [67.8 kB]
+       stack: Get:18 https://mirrors.edge.kernel.org/ubuntu jammy-backports/main Translation-en [11.1 kB]
+       stack: Get:19 https://mirrors.edge.kernel.org/ubuntu jammy-backports/main amd64 c-n-f Metadata [388 B]
+       stack: Get:20 https://mirrors.edge.kernel.org/ubuntu jammy-backports/universe amd64 Packages [28.8 kB]
+       stack: Get:21 https://mirrors.edge.kernel.org/ubuntu jammy-backports/universe Translation-en [16.5 kB]
+       stack: Get:22 https://mirrors.edge.kernel.org/ubuntu jammy-backports/universe amd64 c-n-f Metadata [672 B]
+       stack: Get:23 https://mirrors.edge.kernel.org/ubuntu jammy-security/main amd64 Packages [1,771 kB]
+       stack: Get:24 https://mirrors.edge.kernel.org/ubuntu jammy-security/main Translation-en [291 kB]
+       stack: Get:25 https://mirrors.edge.kernel.org/ubuntu jammy-security/main amd64 c-n-f Metadata [13.3 kB]
+       stack: Get:26 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted amd64 Packages [2,327 kB]
+       stack: Get:27 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted Translation-en [400 kB]
+       stack: Get:28 https://mirrors.edge.kernel.org/ubuntu jammy-security/restricted amd64 c-n-f Metadata [584 B]
+       stack: Get:29 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe amd64 Packages [901 kB]
+       stack: Get:30 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe Translation-en [176 kB]
+       stack: Get:31 https://mirrors.edge.kernel.org/ubuntu jammy-security/universe amd64 c-n-f Metadata [19.2 kB]
+       stack: Get:32 https://mirrors.edge.kernel.org/ubuntu jammy-security/multiverse amd64 Packages [37.2 kB]
+       stack: Get:33 https://mirrors.edge.kernel.org/ubuntu jammy-security/multiverse Translation-en [7,588 B]
+       stack: Get:34 https://mirrors.edge.kernel.org/ubuntu jammy-security/multiverse amd64 c-n-f Metadata [228 B]
+       stack: Fetched 13.1 MB in 22s (603 kB/s)
        stack: Reading package lists...
        stack: + install_docker
        stack: + curl -fsSL https://download.docker.com/linux/ubuntu/gpg
@@ -141,13 +150,13 @@ This option will also create a VM and provision an OS onto it.
        stack: OK
        stack: ++ lsb_release -cs
        stack: + add-apt-repository 'deb https://download.docker.com/linux/ubuntu jammy stable'
-       stack: Get:1 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]
-       stack: Get:2 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [22.7 kB]
-       stack: Hit:3 https://mirrors.edge.kernel.org/ubuntu jammy InRelease
-       stack: Hit:4 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease
-       stack: Hit:5 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease
-       stack: Hit:6 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease
-       stack: Fetched 71.5 kB in 6s (11.8 kB/s)
+       stack: Hit:1 https://mirrors.edge.kernel.org/ubuntu jammy InRelease
+       stack: Hit:2 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease
+       stack: Hit:3 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease
+       stack: Hit:4 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease
+       stack: Get:5 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]
+       stack: Get:6 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages [38.6 kB]
+       stack: Fetched 87.4 kB in 3s (32.3 kB/s)
        stack: Reading package lists...
        stack: W: https://download.docker.com/linux/ubuntu/dists/jammy/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
        stack: Repository: 'deb https://download.docker.com/linux/ubuntu jammy stable'
@@ -161,11 +170,11 @@ This option will also create a VM and provision an OS onto it.
        stack: + apt-get update
        stack: + DEBIAN_FRONTEND=noninteractive
        stack: + command apt-get --allow-change-held-packages --allow-downgrades --allow-remove-essential --allow-unauthenticated --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold --yes update
-       stack: Hit:1 https://mirrors.edge.kernel.org/ubuntu jammy InRelease
-       stack: Hit:2 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease
-       stack: Hit:3 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease
-       stack: Hit:4 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease
-       stack: Hit:5 https://download.docker.com/linux/ubuntu jammy InRelease
+       stack: Hit:1 https://download.docker.com/linux/ubuntu jammy InRelease
+       stack: Hit:2 https://mirrors.edge.kernel.org/ubuntu jammy InRelease
+       stack: Hit:3 https://mirrors.edge.kernel.org/ubuntu jammy-updates InRelease
+       stack: Hit:4 https://mirrors.edge.kernel.org/ubuntu jammy-backports InRelease
+       stack: Hit:5 https://mirrors.edge.kernel.org/ubuntu jammy-security InRelease
        stack: Reading package lists...
        stack: W: https://download.docker.com/linux/ubuntu/dists/jammy/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
        stack: + apt-get install --no-install-recommends containerd.io docker-ce docker-ce-cli
@@ -181,33 +190,33 @@ This option will also create a VM and provision an OS onto it.
        stack:   docker-compose-plugin
        stack: The following NEW packages will be installed:
        stack:   containerd.io docker-ce docker-ce-cli
-       stack: 0 upgraded, 3 newly installed, 0 to remove and 29 not upgraded.
-       stack: Need to get 64.5 MB of archives.
-       stack: After this operation, 249 MB of additional disk space will be used.
-       stack: Get:1 https://download.docker.com/linux/ubuntu jammy/stable amd64 containerd.io amd64 1.6.24-1 [28.6 MB]
-       stack: Get:2 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-cli amd64 5:24.0.7-1~ubuntu.22.04~jammy [13.3 MB]
-       stack: Get:3 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce amd64 5:24.0.7-1~ubuntu.22.04~jammy [22.6 MB]
-       stack: Fetched 64.5 MB in 1s (77.3 MB/s)
+       stack: 0 upgraded, 3 newly installed, 0 to remove and 157 not upgraded.
+       stack: Need to get 69.5 MB of archives.
+       stack: After this operation, 271 MB of additional disk space will be used.
+       stack: Get:1 https://download.docker.com/linux/ubuntu jammy/stable amd64 containerd.io amd64 1.7.21-1 [29.5 MB]
+       stack: Get:2 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce-cli amd64 5:27.2.0-1~ubuntu.22.04~jammy [14.8 MB]
+       stack: Get:3 https://download.docker.com/linux/ubuntu jammy/stable amd64 docker-ce amd64 5:27.2.0-1~ubuntu.22.04~jammy [25.3 MB]
+       stack: Fetched 69.5 MB in 7s (10.6 MB/s)
        stack: Selecting previously unselected package containerd.io.
-   (Reading database ... 76025 files and directories currently installed.)
-       stack: Preparing to unpack .../containerd.io_1.6.24-1_amd64.deb ...
-       stack: Unpacking containerd.io (1.6.24-1) ...
+   (Reading database ... 76233 files and directories currently installed.)
+       stack: Preparing to unpack .../containerd.io_1.7.21-1_amd64.deb ...
+       stack: Unpacking containerd.io (1.7.21-1) ...
        stack: Selecting previously unselected package docker-ce-cli.
-       stack: Preparing to unpack .../docker-ce-cli_5%3a24.0.7-1~ubuntu.22.04~jammy_amd64.deb ...
-       stack: Unpacking docker-ce-cli (5:24.0.7-1~ubuntu.22.04~jammy) ...
+       stack: Preparing to unpack .../docker-ce-cli_5%3a27.2.0-1~ubuntu.22.04~jammy_amd64.deb ...
+       stack: Unpacking docker-ce-cli (5:27.2.0-1~ubuntu.22.04~jammy) ...
        stack: Selecting previously unselected package docker-ce.
-       stack: Preparing to unpack .../docker-ce_5%3a24.0.7-1~ubuntu.22.04~jammy_amd64.deb ...
-       stack: Unpacking docker-ce (5:24.0.7-1~ubuntu.22.04~jammy) ...
-       stack: Setting up containerd.io (1.6.24-1) ...
+       stack: Preparing to unpack .../docker-ce_5%3a27.2.0-1~ubuntu.22.04~jammy_amd64.deb ...
+       stack: Unpacking docker-ce (5:27.2.0-1~ubuntu.22.04~jammy) ...
+       stack: Setting up containerd.io (1.7.21-1) ...
        stack: Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
-       stack: Setting up docker-ce-cli (5:24.0.7-1~ubuntu.22.04~jammy) ...
-       stack: Setting up docker-ce (5:24.0.7-1~ubuntu.22.04~jammy) ...
+       stack: Setting up docker-ce-cli (5:27.2.0-1~ubuntu.22.04~jammy) ...
+       stack: Setting up docker-ce (5:27.2.0-1~ubuntu.22.04~jammy) ...
        stack: Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
        stack: Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
        stack: Processing triggers for man-db (2.10.2-1) ...
        stack: NEEDRESTART-VER: 3.5
-       stack: NEEDRESTART-KCUR: 5.15.0-86-generic
-       stack: NEEDRESTART-KEXP: 5.15.0-86-generic
+       stack: NEEDRESTART-KCUR: 5.15.0-91-generic
+       stack: NEEDRESTART-KEXP: 5.15.0-91-generic
        stack: NEEDRESTART-KSTA: 1
        stack: + gpasswd -a vagrant docker
        stack: Adding user vagrant to group docker
@@ -219,55 +228,56 @@ This option will also create a VM and provision an OS onto it.
        stack: tx-tcp-segmentation: off
        stack: tx-tcp-ecn-segmentation: off
        stack: tx-tcp6-segmentation: off
-       stack: + install_kubectl 1.28.3
-       stack: + local kubectl_version=1.28.3
-       stack: + curl -LO https://dl.k8s.io/v1.28.3/bin/linux/amd64/kubectl
+       stack: + install_kubectl 1.30.4
+       stack: + local kubectl_version=1.30.4
+       stack: + curl -LO https://dl.k8s.io/v1.30.4/bin/linux/amd64/kubectl
        stack:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
        stack:                                  Dload  Upload   Total   Spent    Left  Speed
-   100   138  100   138    0     0    410      0 --:--:-- --:--:-- --:--:--   410
-   100 47.5M  100 47.5M    0     0  24.8M      0  0:00:01  0:00:01 --:--:-- 37.9M
+   100   138  100   138    0     0    149      0 --:--:-- --:--:-- --:--:--   149
+   100 49.0M  100 49.0M    0     0  6841k      0  0:00:07  0:00:07 --:--:-- 10.6M
        stack: + chmod +x ./kubectl
        stack: + mv ./kubectl /usr/local/bin/kubectl
-       stack: + run_helm 192.168.56.4 192.168.56.43 08:00:27:9e:f5:3a /playground/stack/ 192.168.56.5 0.4.2 eth1 v5.6.0
+       stack: + run_helm 192.168.56.4 192.168.56.43 08:00:27:9e:f5:3a /playground/stack/ 192.168.56.5 0.4.5 eth1 v5.7.3 v3.15.4
        stack: + local host_ip=192.168.56.4
        stack: + local worker_ip=192.168.56.43
        stack: + local worker_mac=08:00:27:9e:f5:3a
        stack: + local manifests_dir=/playground/stack/
        stack: + local loadbalancer_ip=192.168.56.5
-       stack: + local helm_chart_version=0.4.2
+       stack: + local helm_chart_version=0.4.5
        stack: + local loadbalancer_interface=eth1
-       stack: + local k3d_version=v5.6.0
+       stack: + local k3d_version=v5.7.3
        stack: + local namespace=tink-system
-       stack: + install_k3d v5.6.0
-       stack: + local k3d_Version=v5.6.0
+       stack: + local helm_version=v3.15.4
+       stack: + install_k3d v5.7.3
+       stack: + local k3d_Version=v5.7.3
        stack: + wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh
-       stack: + TAG=v5.6.0
+       stack: + TAG=v5.7.3
        stack: + bash
        stack: Preparing to install k3d into /usr/local/bin
        stack: k3d installed into /usr/local/bin/k3d
        stack: Run 'k3d --help' to see what you can do with it.
        stack: + start_k3d
-       stack: + k3d cluster create --network host --no-lb --k3s-arg --disable=traefik,servicelb --k3s-arg --kube-apiserver-arg=feature-gates=MixedProtocolLBService=true --host-pid-mode
+       stack: + K3D_FIX_DNS=false
+       stack: + k3d cluster create --network host --no-lb --k3s-arg --disable=traefik,servicelb,metrics-server,local-storage
        stack: INFO[0000] [SimpleConfig] Hostnetwork selected - disabling injection of docker host into the cluster, server load balancer and setting the api port to the k3s default
-       stack: WARN[0000] No node filter specified
        stack: WARN[0000] No node filter specified
        stack: INFO[0000] [ClusterConfig] Hostnetwork selected - disabling injection of docker host into the cluster, server load balancer and setting the api port to the k3s default
        stack: INFO[0000] Prep: Network
-       stack: INFO[0000] Re-using existing network 'host' (2ecf52da28c15a6bbe026b5e71f3af288fefbbb222b2762bafc29e9b1791ff8b)
+       stack: INFO[0000] Re-using existing network 'host' (e779c33dcefad74683ae0e93c7928c6da164cb369d5415511015d38cd00f3a0b)
        stack: INFO[0000] Created image volume k3d-k3s-default-images
        stack: INFO[0000] Starting new tools node...
        stack: INFO[0001] Creating node 'k3d-k3s-default-server-0'
-       stack: INFO[0001] Pulling image 'ghcr.io/k3d-io/k3d-tools:5.6.0'
-       stack: INFO[0002] Pulling image 'docker.io/rancher/k3s:v1.27.4-k3s1'
-       stack: INFO[0003] Starting Node 'k3d-k3s-default-tools'
-       stack: INFO[0010] Using the k3d-tools node to gather environment information
-       stack: INFO[0011] Starting cluster 'k3s-default'
-       stack: INFO[0011] Starting servers...
-       stack: INFO[0011] Starting Node 'k3d-k3s-default-server-0'
-       stack: INFO[0014] All agents already running.
-       stack: INFO[0014] All helpers already running.
-       stack: INFO[0014] Cluster 'k3s-default' created successfully!
-       stack: INFO[0014] You can now use it like this:
+       stack: INFO[0002] Pulling image 'ghcr.io/k3d-io/k3d-tools:5.7.3'
+       stack: INFO[0003] Pulling image 'docker.io/rancher/k3s:v1.30.3-k3s1'
+       stack: INFO[0005] Starting node 'k3d-k3s-default-tools'
+       stack: INFO[0012] Using the k3d-tools node to gather environment information
+       stack: INFO[0012] Starting cluster 'k3s-default'
+       stack: INFO[0012] Starting servers...
+       stack: INFO[0012] Starting node 'k3d-k3s-default-server-0'
+       stack: INFO[0016] All agents already running.
+       stack: INFO[0016] All helpers already running.
+       stack: INFO[0016] Cluster 'k3s-default' created successfully!
+       stack: INFO[0016] You can now use it like this:
        stack: kubectl cluster-info
        stack: + mkdir -p /root/.kube/
        stack: + k3d kubeconfig get -a
@@ -275,46 +285,48 @@ This option will also create a VM and provision an OS onto it.
        stack: error: no matching resources found
        stack: + sleep 1
        stack: + kubectl wait --for=condition=Ready nodes --all --timeout=600s
-       stack: error: no matching resources found
-       stack: + sleep 1
-       stack: + kubectl wait --for=condition=Ready nodes --all --timeout=600s
-       stack: error: no matching resources found
-       stack: + sleep 1
-       stack: + kubectl wait --for=condition=Ready nodes --all --timeout=600s
-       stack: error: no matching resources found
-       stack: + sleep 1
-       stack: + kubectl wait --for=condition=Ready nodes --all --timeout=600s
-       stack: error: no matching resources found
-       stack: + sleep 1
-       stack: + kubectl wait --for=condition=Ready nodes --all --timeout=600s
        stack: node/k3d-k3s-default-server-0 condition met
-       stack: + install_helm
-       stack: + helm_ver=v3.9.4
+       stack: + kubectl_for_vagrant_user
+       stack: + runuser -l vagrant -c 'mkdir -p ~/.kube/'
+       stack: + runuser -l vagrant -c 'k3d kubeconfig get -a > ~/.kube/config'
+       stack: + chmod 600 /home/vagrant/.kube/config
+       stack: + echo 'export KUBECONFIG="/home/vagrant/.kube/config"'
+       stack: + install_helm v3.15.4
+       stack: + local helm_ver=v3.15.4
        stack: + curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
        stack: + chmod 700 get_helm.sh
-       stack: + ./get_helm.sh --version v3.9.4
-       stack: Downloading https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
+       stack: + ./get_helm.sh --version v3.15.4
+       stack: Downloading https://get.helm.sh/helm-v3.15.4-linux-amd64.tar.gz
        stack: Verifying checksum... Done.
        stack: Preparing to install helm into /usr/local/bin
        stack: helm installed into /usr/local/bin/helm
-       stack: + helm_install_tink_stack tink-system 0.4.2 eth1 192.168.56.5
+       stack: + helm_install_tink_stack tink-system 0.4.5 eth1 192.168.56.5
        stack: + local namespace=tink-system
-       stack: + local version=0.4.2
+       stack: + local version=0.4.5
        stack: + local interface=eth1
        stack: + local loadbalancer_ip=192.168.56.5
        stack: + trusted_proxies=
        stack: + '[' '' '!=' '' ']'
+       stack: ++ tr ' ' ,
+       stack: ++ kubectl get nodes -o 'jsonpath={.items[*].spec.podCIDR}'
+       stack: + trusted_proxies=
+       stack: + sleep 5
+       stack: + '[' '' '!=' '' ']'
        stack: ++ kubectl get nodes -o 'jsonpath={.items[*].spec.podCIDR}'
        stack: ++ tr ' ' ,
        stack: + trusted_proxies=
+       stack: + sleep 5
        stack: + '[' '' '!=' '' ']'
        stack: ++ kubectl get nodes -o 'jsonpath={.items[*].spec.podCIDR}'
        stack: ++ tr ' ' ,
        stack: + trusted_proxies=10.42.0.0/24
+       stack: + sleep 5
        stack: + '[' 10.42.0.0/24 '!=' '' ']'
-       stack: + helm install tink-stack oci://ghcr.io/tinkerbell/charts/stack --version 0.4.2 --create-namespace --namespace tink-system --wait --set 'smee.trustedProxies={10.42.0.0/24}' --set 'hegel.trustedProxies={10.42.0.0/24}' --set stack.kubevip.interface=eth1 --set stack.relay.sourceInterface=eth1 --set stack.loadBalancerIP=192.168.56.5 --set smee.publicIP=192.168.56.5
+       stack: + helm install tink-stack oci://ghcr.io/tinkerbell/charts/stack --version 0.4.5 --create-namespace --namespace tink-system --wait --set 'smee.trustedProxies={10.42.0.0/24}' --set 'hegel.trustedProxies={10.42.0.0/24}' --set stack.kubevip.interface=eth1 --set stack.relay.sourceInterface=eth1 --set stack.loadBalancerIP=192.168.56.5 --set smee.publicIP=192.168.56.5
+       stack: Pulled: ghcr.io/tinkerbell/charts/stack:0.4.5
+       stack: Digest: sha256:0d2ba4fa96bd6bcbc39cfd63a85af2f17d59538a5573ff37bb8bf48fedd0659f
        stack: NAME: tink-stack
-       stack: LAST DEPLOYED: Tue Oct 31 21:56:58 2023
+       stack: LAST DEPLOYED: Thu Sep  5 16:24:39 2024
        stack: NAMESPACE: tink-system
        stack: STATUS: deployed
        stack: REVISION: 1
@@ -326,8 +338,8 @@ This option will also create a VM and provision an OS onto it.
        stack: + local host_ip=192.168.56.5
        stack: + local namespace=tink-system
        stack: + disk_device=/dev/sda
-       stack: + lsblk
        stack: + grep -q vda
+       stack: + lsblk
        stack: + disk_device=/dev/vda
        stack: + export DISK_DEVICE=/dev/vda
        stack: + DISK_DEVICE=/dev/vda
@@ -348,16 +360,11 @@ This option will also create a VM and provision an OS onto it.
        stack: + echo -e ---
        stack: + kubectl apply -n tink-system -f /tmp/manifests.yaml
        stack: hardware.tinkerbell.org/machine1 created
-       stack: template.tinkerbell.org/ubuntu-jammy created
+       stack: template.tinkerbell.org/ubuntu created
        stack: workflow.tinkerbell.org/playground-workflow created
        stack: + kubectl apply -n tink-system -f /playground/stack//ubuntu-download.yaml
        stack: configmap/download-image created
-       stack: job.batch/download-ubuntu-jammy created
-       stack: + kubectl_for_vagrant_user
-       stack: + runuser -l vagrant -c 'mkdir -p ~/.kube/'
-       stack: + runuser -l vagrant -c 'k3d kubeconfig get -a > ~/.kube/config'
-       stack: + chmod 600 /home/vagrant/.kube/config
-       stack: + echo 'export KUBECONFIG="/home/vagrant/.kube/config"'
+       stack: job.batch/download-ubuntu-noble created
        stack: all done!
        stack: + echo 'all done!'
    ```
@@ -378,12 +385,12 @@ This option will also create a VM and provision an OS onto it.
    <summary>example output</summary>
 
    ```bash
-   NAME                    COMPLETIONS   DURATION   AGE
-   download-hook           1/1           27s        72s
-   download-ubuntu-jammy   0/1           49s        49s
-   download-ubuntu-jammy   0/1           70s        70s
-   download-ubuntu-jammy   0/1           72s        72s
-   download-ubuntu-jammy   1/1           72s        72s
+   NAME                    STATUS     COMPLETIONS   DURATION   AGE
+   download-hook           Complete   1/1           68s        2m21s
+   download-ubuntu-noble   Running    0/1           89s        89s
+   download-ubuntu-noble   Running    0/1           2m1s       2m1s
+   download-ubuntu-noble   Running    0/1           2m2s       2m2s
+   download-ubuntu-noble   Complete   1/1           2m2s       2m2s
    ```
 
    </details>
@@ -404,7 +411,7 @@ This option will also create a VM and provision an OS onto it.
    Bringing machine 'machine1' up with 'libvirt' provider...
    ==> machine1: Creating domain with the following settings...
    ==> machine1:  -- Name:              vagrant_machine1
-   ==> machine1:  -- Description:       Source: /home/tink/repos/tinkerbell/playground/vagrant/Vagrantfile
+   ==> machine1:  -- Description:       Source: /home/tink/repos/tinkerbell/playground/stack/vagrant/Vagrantfile
    ==> machine1:  -- Domain type:       kvm
    ==> machine1:  -- Cpus:              2
    ==> machine1:  -- Feature:           acpi
@@ -449,22 +456,24 @@ This option will also create a VM and provision an OS onto it.
    <summary>expected output</summary>
 
    ```bash
-   NAME               TEMPLATE       STATE
-   playground-workflow   ubuntu-jammy   STATE_PENDING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_RUNNING
-   playground-workflow   ubuntu-jammy   STATE_SUCCESS
+   NAME                  TEMPLATE   STATE
+   playground-workflow   ubuntu     STATE_PENDING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_RUNNING
+   playground-workflow   ubuntu     STATE_SUCCESS
    ```
 
    </details>
